@@ -1,81 +1,35 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karang Taruna RW 04 Tegal Parang</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 font-sans">
+<form id="formKarangTaruna" class="space-y-4">
+    <input type="text" name="Nama" placeholder="Nama" required class="border p-2 w-full">
+    <input type="email" name="Email" placeholder="Email" required class="border p-2 w-full">
+    <textarea name="Pesan" placeholder="Pesan" required class="border p-2 w-full"></textarea>
+    <button type="submit" id="btnKirim" class="bg-blue-500 text-white p-2 w-full">Kirim</button>
+</form>
 
-    <nav class="bg-blue-600 p-4 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="font-bold text-xl">RW 04 DIGITAL</h1>
-            <ul class="flex space-x-4 text-sm">
-                <li><a href="#" class="hover:underline">Beranda</a></li>
-                <li><a href="#form-section" class="hover:underline">Kontak</a></li>
-            </ul>
-        </div>
-    </nav>
+<script>
+  // PASTI-KAN URL DI BAWAH INI ADALAH URL DARI DEPLOYMENT TERBARU (LANGKAH 2)
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwBkNTvn8e49HXHV676jbUU8IXD5Nc4TA_lDZ_Zn7zTfkrkESVCJMVGZ5AxiIVc_nPC/exec'; 
+  const form = document.getElementById('formKarangTaruna');
 
-    <header class="bg-blue-500 py-16 text-center text-white">
-        <h2 class="text-4xl font-extrabold mb-2">Karang Taruna RW 04</h2>
-        <p class="text-blue-100">Wadah Aspirasi & Kegiatan Pemuda Tegal Parang</p>
-    </header>
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('btnKirim').disabled = true;
+    document.getElementById('btnKirim').innerText = "Mengirim...";
 
-    <section id="form-section" class="container mx-auto my-10 p-6 max-w-md bg-white rounded-xl shadow-md">
-        <h3 class="text-2xl font-bold mb-6 text-gray-800 text-center">Hubungi Kami</h3>
-        
-        <form id="formKarangTaruna">
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2">Nama Lengkap</label>
-                <input type="text" name="Nama" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Contoh: Budi Santoso" required>
-            </div>
-            
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2">Email Aktif</label>
-                <input type="email" name="Email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="budi@email.com" required>
-            </div>
-            
-            <div class="mb-4">
-                <label class="block text-gray-700 font-semibold mb-2">Pesan Aspirasi</label>
-                <textarea name="Pesan" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Tuliskan pesanmu di sini..." required></textarea>
-            </div>
-
-            <button type="submit" id="btnKirim" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300">
-                Kirim Data ke RW 04
-            </button>
-        </form>
-    </section>
-
-    <script>
-        // GANTI URL DI BAWAH INI DENGAN URL WEB APP ANDA DARI TAHAP 2
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxV_eM_e5peKju3Upwcx8Ju8T9KoxxBUvbgTZucaNHNExq96tOHVNLvDtOKXFFv5Jfq/exec';
-        const form = document.getElementById('formKarangTaruna');
-        const btn = document.getElementById('btnKirim');
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            btn.disabled = true;
-            btn.innerHTML = "Sedang Mengirim...";
-
-            fetch(scriptURL, { 
-                method: 'POST', 
-                body: new FormData(form)
-            })
-            .then(response => {
-                alert("Sukses! Pesan Anda telah tersimpan di database RW 04.");
-                btn.disabled = false;
-                btn.innerHTML = "Kirim Data ke RW 04";
-                form.reset();
-            })
-            .catch(error => {
-                alert("Terjadi kesalahan: " + error.message);
-                btn.disabled = false;
-                btn.innerHTML = "Coba Kirim Lagi";
-            });
-        });
-    </script>
-
-</body>
-</html>
+    // Menggunakan fetch dengan mode 'no-cors' jika terjadi masalah akses
+    fetch(scriptURL, { 
+        method: 'POST', 
+        body: new FormData(form)
+    })
+    .then(response => {
+        alert("Data Berhasil Terkirim!");
+        form.reset();
+        document.getElementById('btnKirim').disabled = false;
+        document.getElementById('btnKirim').innerText = "Kirim";
+    })
+    .catch(error => {
+        alert("Gagal mengirim! Error: " + error.message);
+        document.getElementById('btnKirim').disabled = false;
+        document.getElementById('btnKirim').innerText = "Kirim";
+    });
+  });
+</script>
