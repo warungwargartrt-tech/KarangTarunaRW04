@@ -43,15 +43,18 @@ export default function App() {
 
     try {
       // URL Google Apps Script yang Anda berikan
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzHgC3Usj7QcbzpNqvOUPAyWhcJl2QOzndWpiaVxe2oiYR0v1UsQMfFWYnJQtA8yz_z/exec';
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxV_eM_e5peKju3Upwcx8Ju8T9KoxxBUvbgTZucaNHNExq96tOHVNLvDtOKXFFv5Jfq/exec';
       
+      const formDataToSend = new FormData();
+      formDataToSend.append('nama', formData.nama);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('subjek', formData.subjek);
+      formDataToSend.append('pesan', formData.pesan);
+
       await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
       });
 
       setSubmitStatus('success');
@@ -398,7 +401,7 @@ export default function App() {
             <div className="lg:w-2/3 p-12">
               <form 
                 onSubmit={handleFormSubmit} 
-                action="https://script.google.com/macros/s/AKfycbzHgC3Usj7QcbzpNqvOUPAyWhcJl2QOzndWpiaVxe2oiYR0v1UsQMfFWYnJQtA8yz_z/exec"
+                action="https://script.google.com/macros/s/AKfycbxV_eM_e5peKju3Upwcx8Ju8T9KoxxBUvbgTZucaNHNExq96tOHVNLvDtOKXFFv5Jfq/exec"
                 method="POST"
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
