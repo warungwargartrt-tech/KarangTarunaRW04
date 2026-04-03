@@ -1,13 +1,58 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Form Pesan Karang Taruna</h2>
+    
+    <form id="formPesan">
+        <div class="mb-4">
+            <label>Nama Lengkap</label>
+            <input type="text" name="Nama" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div class="mb-4">
+            <label>Subjek</label>
+            <input type="text" name="Subjek" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div class="mb-4">
+            <label>Email</label>
+            <input type="email" name="Email" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div class="mb-4">
+            <label>Isi Pesan</label>
+            <textarea name="Pesan" required class="w-full p-2 border rounded" rows="4"></textarea>
+        </div>
+        
+        <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white py-2 rounded font-bold hover:bg-blue-700">
+            Kirim Pesan
+        </button>
+    </form>
+</div>
 
+<script>
+    // MASUKKAN URL DEPLOYMENT TERBARU ANDA DI SINI
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyw_8IcBFGjhlROaJyVJu7N131_7yeLnNzxu4UU6ijFGUAMN8NdU_40t0Uv4rDSYV91wQ/exec';
+    const form = document.getElementById('formPesan');
+    const btn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.innerHTML = "Sedang Mengirim...";
+
+        fetch(scriptURL, { 
+            method: 'POST', 
+            body: new FormData(form)
+        })
+        .then(response => {
+            alert("Terima kasih! Pesan Anda (Nama, Subjek, Email) berhasil tersimpan.");
+            btn.disabled = false;
+            btn.innerHTML = "Kirim Pesan";
+            form.reset();
+        })
+        .catch(error => {
+            alert("Error: " + error.message);
+            btn.disabled = false;
+            btn.innerHTML = "Kirim Pesan";
+        });
+    });
+</script>
