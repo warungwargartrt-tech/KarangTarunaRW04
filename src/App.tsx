@@ -177,7 +177,25 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <section id="beranda" className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="beranda" className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Scrolling Welcome Text */}
+        <div className="absolute top-24 left-0 w-full bg-navy/60 backdrop-blur-md border-y border-gold/30 py-2 z-20 overflow-hidden">
+          <div className="animate-marquee">
+            <span className="whitespace-nowrap text-gold font-bold uppercase tracking-widest text-sm px-12">
+              Selamat Datang di Website Resmi Karang Taruna RW 04 Tegal Parang — Bersinergi Membangun Lingkungan yang Harmonis, Inovatif, dan Berprestasi — Mari Bergabung dan Berkontribusi untuk Kemajuan Bersama!
+            </span>
+            <span className="whitespace-nowrap text-gold font-bold uppercase tracking-widest text-sm px-12">
+              Selamat Datang di Website Resmi Karang Taruna RW 04 Tegal Parang — Bersinergi Membangun Lingkungan yang Harmonis, Inovatif, dan Berprestasi — Mari Bergabung dan Berkontribusi untuk Kemajuan Bersama!
+            </span>
+            <span className="whitespace-nowrap text-gold font-bold uppercase tracking-widest text-sm px-12">
+              Selamat Datang di Website Resmi Karang Taruna RW 04 Tegal Parang — Bersinergi Membangun Lingkungan yang Harmonis, Inovatif, dan Berprestasi — Mari Bergabung dan Berkontribusi untuk Kemajuan Bersama!
+            </span>
+            <span className="whitespace-nowrap text-gold font-bold uppercase tracking-widest text-sm px-12">
+              Selamat Datang di Website Resmi Karang Taruna RW 04 Tegal Parang — Bersinergi Membangun Lingkungan yang Harmonis, Inovatif, dan Berprestasi — Mari Bergabung dan Berkontribusi untuk Kemajuan Bersama!
+            </span>
+          </div>
+        </div>
+
         <div className="absolute inset-0 z-0">
           <img 
             src="https://lh3.googleusercontent.com/d/1B7ewqhu3yMPZ1d8xSFJc2xkWKi0Gyl6Y" 
