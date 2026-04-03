@@ -42,19 +42,20 @@ export default function App() {
     setSubmitStatus('idle');
 
     try {
-      // URL Google Apps Script yang Anda berikan
+      // URL Deployment Terbaru Anda
       const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxV_eM_e5peKju3Upwcx8Ju8T9KoxxBUvbgTZucaNHNExq96tOHVNLvDtOKXFFv5Jfq/exec';
       
-      const formDataToSend = new FormData();
-      formDataToSend.append('nama', formData.nama);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('subjek', formData.subjek);
-      formDataToSend.append('pesan', formData.pesan);
+      // Mengirim data sebagai Query Parameters di URL (Cara paling stabil untuk Google Sheets)
+      const queryParams = new URLSearchParams({
+        nama: formData.nama,
+        email: formData.email,
+        subjek: formData.subjek,
+        pesan: formData.pesan
+      }).toString();
 
-      await fetch(SCRIPT_URL, {
+      await fetch(`${SCRIPT_URL}?${queryParams}`, {
         method: 'POST',
-        mode: 'no-cors',
-        body: formDataToSend,
+        mode: 'no-cors'
       });
 
       setSubmitStatus('success');
@@ -401,8 +402,6 @@ export default function App() {
             <div className="lg:w-2/3 p-12">
               <form 
                 onSubmit={handleFormSubmit} 
-                action="https://script.google.com/macros/s/AKfycbxV_eM_e5peKju3Upwcx8Ju8T9KoxxBUvbgTZucaNHNExq96tOHVNLvDtOKXFFv5Jfq/exec"
-                method="POST"
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
                 <div className="space-y-2">
