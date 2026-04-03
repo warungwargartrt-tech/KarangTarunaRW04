@@ -71,25 +71,20 @@ export default function App() {
 
   const stats = [
     { icon: <Users className="w-8 h-8" />, value: "150+", label: "Anggota Aktif" },
-    { icon: <Briefcase className="w-8 h-8" />, value: "12", label: "Program Kerja" },
+    { icon: <Briefcase className="w-8 h-8" />, value: "2", label: "Program Unggulan" },
     { icon: <Trophy className="w-8 h-8" />, value: "4", label: "Prestasi Utama" },
   ];
 
   const programs = [
     {
-      title: "Kerja Bakti Rutin",
-      description: "Menjaga kebersihan dan keasrian lingkungan RW 04 setiap akhir pekan.",
-      image: "/api/attachments/3"
+      title: "Workshop",
+      description: "Program pelatihan dan pengembangan kreativitas pemuda RW 04 untuk meningkatkan kompetensi dan kemandirian.",
+      image: "https://lh3.googleusercontent.com/d/1w0_7QUuXBhT8bPhv1GYySRs8vW05aGwt"
     },
     {
-      title: "Kegiatan Sosial",
-      description: "Meningkatkan keakraban antar pemuda melalui berbagai kegiatan sosial dan kemasyarakatan.",
-      image: "/api/attachments/2"
-    },
-    {
-      title: "Pelatihan UMKM",
-      description: "Memberdayakan ekonomi kreatif warga melalui workshop kewirausahaan digital.",
-      image: "/api/attachments/1"
+      title: "Jalan Sehat",
+      description: "Kegiatan rutin untuk menjaga kesehatan dan mempererat tali silaturahmi antar warga RW 04.",
+      image: "https://lh3.googleusercontent.com/d/1TL0e7nAueOFqGLeF9WeDphTsqoe_J-w8"
     }
   ];
 
@@ -262,7 +257,7 @@ export default function App() {
             <div className="w-24 h-1.5 bg-gold mx-auto mt-4 rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {programs.map((program, idx) => (
               <motion.div 
                 key={idx}
