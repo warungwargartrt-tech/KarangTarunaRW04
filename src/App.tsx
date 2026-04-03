@@ -43,7 +43,7 @@ export default function App() {
 
     try {
       // URL Deployment Terbaru Anda
-      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxV_eM_e5peKju3Upwcx8Ju8T9KoxxBUvbgTZucaNHNExq96tOHVNLvDtOKXFFv5Jfq/exec';
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz8VdlTV7nUbxhvz6vtbIyDsNPpwr9_lgeqj-9FdFLm5wy8R6RD84Q5HCPTXJ7z216EgA/exec';
       
       // Mengirim data sebagai Query Parameters di URL (Cara paling stabil untuk Google Sheets)
       const queryParams = new URLSearchParams({
