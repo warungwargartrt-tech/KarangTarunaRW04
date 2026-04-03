@@ -1,13 +1,35 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<form id="formKarangTaruna" class="space-y-4">
+    <input type="text" name="Nama" placeholder="Nama" required class="border p-2 w-full">
+    <input type="email" name="Email" placeholder="Email" required class="border p-2 w-full">
+    <textarea name="Pesan" placeholder="Pesan" required class="border p-2 w-full"></textarea>
+    <button type="submit" id="btnKirim" class="bg-blue-500 text-white p-2 w-full">Kirim</button>
+</form>
 
+<script>
+  // PASTI-KAN URL DI BAWAH INI ADALAH URL DARI DEPLOYMENT TERBARU (LANGKAH 2)
+  const scriptURL = 'TEMPEL_URL_BARU_DI_SINI'; 
+  const form = document.getElementById('formKarangTaruna');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('btnKirim').disabled = true;
+    document.getElementById('btnKirim').innerText = "Mengirim...";
+
+    // Menggunakan fetch dengan mode 'no-cors' jika terjadi masalah akses
+    fetch(scriptURL, { 
+        method: 'POST', 
+        body: new FormData(form)
+    })
+    .then(response => {
+        alert("Data Berhasil Terkirim!");
+        form.reset();
+        document.getElementById('btnKirim').disabled = false;
+        document.getElementById('btnKirim').innerText = "Kirim";
+    })
+    .catch(error => {
+        alert("Gagal mengirim! Error: " + error.message);
+        document.getElementById('btnKirim').disabled = false;
+        document.getElementById('btnKirim').innerText = "Kirim";
+    });
+  });
+</script>
